@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+  <style>
+    .container {
+      width: 400px;
+      height: 300px;
+      border-radius: 5px;
+      box-shadow: 0px 5px 7px 9px rgba(94, 62, 62, 0.14);
+      margin: 50px auto;
+      padding: 20px;
+      background: #c4dac4;
+    }
+    label {
+      font-size: 25px;
+      font-weight: 800;
+      color: #88bd88;
+    }
+    input {
+      width: 380px;
+      height: 30px;
+      border-radius: 10px;
+      padding: 5px 10px;
+      font-size: 20px;
+      color: #65ab65;
+    }
+    input::placeholder {
+      font-size: 20px;
+    }
+    button {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 30px;
+      background: #39b939;
+      color: #c6ecc6;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 style="text-align: center; color: #57d357">Login Page</h1>
+    <form id="form-login">
+      <label for="nameLogin">Name:</label><br>
+      <input type="text" placeholder="Ism" id="nameLogin" value="Asliddin">
+      <br><br>
+      <label for="passwordLogin">Parol:</label><br>
+      <input type="password" placeholder="password" id="passwordLogin" value="1111">
+      <button type="submit" id="save">Sumbit</button>
+    </form>
+  </div>
+  <script src="./js/utils.js"></script>
+<script>
+  const formLogin = document.getElementById('form-login');
+  console.log(formLogin)
+  formLogin.addEventListener('submit', (e)=> {
+    e.preventDefault();
+    console.log('!!!!!!!!!')
+    const nameLogin = document.getElementById('nameLogin').value;
+    const passwordLogin = document.getElementById('passwordLogin').value;
+
+    console.log(nameLogin, passwordLogin)
+    if (nameLogin === "Asliddin" && passwordLogin === "1111") {
+      localStorage.setItem('nameLogin', nameLogin)
+      window.location.href = "/index.html"
+      console.log(window.location.href, 'work')
+    }
+  })
+</script>
+</body>
+</html>
