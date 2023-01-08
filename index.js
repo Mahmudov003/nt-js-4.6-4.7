@@ -1,7 +1,7 @@
 //
 
-async function myAsync(page = 1) {
-    const resFetch = await fetch(`http://www.omdbapi.com/?s=war&apikey=6129757b&page=${page}`)
+async function myAsync(page = 1, search = "") {
+    const resFetch = await fetch(`http://www.omdbapi.com/?s=${search}&apikey=6129757b&page=${page}`)
     const result = await resFetch.json();
     if (result.Response === "True") {
         let lastPageItem = document.getElementById('lastPage');
@@ -27,9 +27,8 @@ function redMovie(movies) {
     })
 }
 
-function getRendMovie(page) {
-    myAsync(page).then(movies => {
-        console.log(movies)
+function getRendMovie(page, search) {
+    myAsync(page, search).then(movies => {
         redMovie(movies)
     })
 }
@@ -45,7 +44,6 @@ pagination.addEventListener('click', (e) => {
         if (!lastPage) lastPage = 1;
         page = lastPage + 1;
         localStorage.setItem('lastPage', page);
-        console.log(page);
     } else if (page === "Oldingi") {
         let lastPage = +localStorage.getItem('lastPage');
         if (!lastPage) lastPage = 1;
@@ -58,3 +56,9 @@ pagination.addEventListener('click', (e) => {
     getRendMovie(page);
 })
 
+function search(e) {
+    e.preventDefault();
+    const searchInput = document.getElementById('search-input')
+    getRendMovie(1, searchInput.value)
+    searchInput.value = ""
+}
